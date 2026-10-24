@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#dbeafe;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c7d8f0;stop-opacity:1"/>
+    </linearGradient>
+    <!-- Floor gradient -->
+    <linearGradient id="floorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d1d5db;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#e5e7eb;stop-opacity:1"/>
+    </linearGradient>
+    <!-- Window glow -->
+    <radialGradient id="windowGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#fef9c3;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#fef9c3;stop-opacity:0"/>
+    </radialGradient>
+    <!-- Scrubs colors -->
+    <linearGradient id="navyScrub" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#162d4a"/>
+    </linearGradient>
+    <linearGradient id="tealScrub" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d9488"/>
+      <stop offset="100%" style="stop-color:#0f766e"/>
+    </linearGradient>
+    <linearGradient id="blueScrub" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <!-- Soft shadow filter -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="4"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.15"/></feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="560" fill="url(#bgGrad)"/>
+
+  <!-- Floor -->
+  <rect x="0" y="400" width="800" height="160" fill="url(#floorGrad)"/>
+  <line x1="0" y1="400" x2="800" y2="400" stroke="#b0b8c4" stroke-width="1" opacity="0.5"/>
+
+  <!-- Wall details -->
+  <rect x="80" y="60" width="160" height="220" rx="8" fill="#bfdbfe" stroke="#93c5fd" stroke-width="2"/>
+  <rect x="90" y="70" width="140" height="200" rx="4" fill="#e0f2fe"/>
+  <rect x="90" y="70" width="140" height="200" rx="4" fill="url(#windowGlow)"/>
+  <!-- Window panes -->
+  <line x1="160" y1="70" x2="160" y2="270" stroke="#93c5fd" stroke-width="1.5"/>
+  <line x1="90" y1="170" x2="230" y2="170" stroke="#93c5fd" stroke-width="1.5"/>
+
+  <rect x="560" y="60" width="160" height="220" rx="8" fill="#bfdbfe" stroke="#93c5fd" stroke-width="2"/>
+  <rect x="570" y="70" width="140" height="200" rx="4" fill="#e0f2fe"/>
+  <rect x="570" y="70" width="140" height="200" rx="4" fill="url(#windowGlow)"/>
+  <line x1="640" y1="70" x2="640" y2="270" stroke="#93c5fd" stroke-width="1.5"/>
+  <line x1="570" y1="170" x2="710" y2="170" stroke="#93c5fd" stroke-width="1.5"/>
+
+  <!-- Medical equipment in background -->
+  <!-- Heart monitor -->
+  <g transform="translate(700, 180)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="60" height="45" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+    <polyline points="5,22 15,22 20,10 25,35 30,18 35,22 55,22" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+    <rect x="0" y="45" width="4" height="120" rx="2" fill="#94a3b8"/>
+  </g>
+
+  <!-- IV Stand -->
+  <g transform="translate(60, 150)">
+    <line x1="15" y1="0" x2="15" y2="250" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"/>
+    <line x1="0" y1="250" x2="30" y2="250" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"/>
+    <line x1="5" y1="0" x2="25" y2="0" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"/>
+    <rect x="5" y="5" width="20" height="30" rx="3" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+    <line x1="15" y1="35" x2="15" y2="60" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- === PERSON 1 (Left) - Female, Navy scrubs === -->
+  <g transform="translate(160, 130)" filter="url(#softShadow)">
+    <!-- Body -->
+    <rect x="-30" y="80" width="60" height="100" rx="8" fill="url(#navyScrub)"/>
+    <!-- V-neck detail -->
+    <path d="M-10,80 L0,100 L10,80" fill="none" stroke="#0f2942" stroke-width="1.5"/>
+    <!-- Arms -->
+    <rect x="-42" y="85" width="16" height="70" rx="8" fill="url(#navyScrub)"/>
+    <rect x="26" y="85" width="16" height="70" rx="8" fill="url(#navyScrub)"/>
+    <!-- Hands -->
+    <ellipse cx="-34" cy="158" rx="8" ry="6" fill="#c68642"/>
+    <ellipse cx="34" cy="158" rx="8" ry="6" fill="#c68642"/>
+    <!-- Head -->
+    <ellipse cx="0" cy="50" rx="28" ry="32" fill="#c68642"/>
+    <!-- Hair -->
+    <path d="M-28,40 Q-30,10 -10,5 Q0,2 10,5 Q30,10 28,40" fill="#1a1a2e"/>
+    <path d="M-28,40 Q-32,55 -25,70" fill="#1a1a2e"/>
+    <path d="M28,40 Q32,55 25,70" fill="#1a1a2e"/>
+    <!-- Face -->
+    <ellipse cx="-10" cy="45" rx="3" ry="3.5" fill="#2d1810"/>
+    <ellipse cx="10" cy="45" rx="3" ry="3.5" fill="#2d1810"/>
+    <path d="M-6,58 Q0,64 6,58" fill="none" stroke="#8b5e3c" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Stethoscope -->
+    <path d="M-8,80 Q-15,95 -20,120" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+    <circle cx="-20" cy="125" r="6" fill="#6b7280" stroke="#4b5563" stroke-width="1.5"/>
+    <!-- ID Badge -->
+    <rect x="12" y="100" width="14" height="20" rx="2" fill="white" stroke="#d1d5db" stroke-width="0.5"/>
+    <rect x="15" y="103" width="8" height="6" rx="1" fill="#93c5fd"/>
+    <line x1="15" y1="113" x2="23" y2="113" stroke="#d1d5db" stroke-width="0.5"/>
+    <line x1="15" y1="116" x2="23" y2="116" stroke="#d1d5db" stroke-width="0.5"/>
+    <!-- Legs -->
+    <rect x="-22" y="178" width="18" height="90" rx="6" fill="url(#navyScrub)"/>
+    <rect x="4" y="178" width="18" height="90" rx="6" fill="url(#navyScrub)"/>
+    <!-- Shoes -->
+    <ellipse cx="-13" cy="272" rx="14" ry="6" fill="#f8fafc"/>
+    <ellipse cx="13" cy="272" rx="14" ry="6" fill="#f8fafc"/>
+  </g>
+
+  <!-- === PERSON 2 (Center-Left) - Male, Teal scrubs === -->
+  <g transform="translate(310, 115)" filter="url(#softShadow)">
+    <!-- Body -->
+    <rect x="-35" y="90" width="70" height="110" rx="8" fill="url(#tealScrub)"/>
+    <!-- V-neck -->
+    <path d="M-12,90 L0,112 L12,90" fill="none" stroke="#0a7269" stroke-width="1.5"/>
+    <!-- Arms -->
+    <rect x="-48" y="95" width="18" height="75" rx="9" fill="url(#tealScrub)"/>
+    <!-- Right arm holding tablet -->
+    <g transform="rotate(-15, 37, 130)">
+      <rect x="30" y="95" width="18" height="75" rx="9" fill="url(#tealScrub)"/>
+    </g>
+    <!-- Hands -->
+    <ellipse cx="-39" cy="173" rx="9" ry="7" fill="#8d5524"/>
+    <ellipse cx="44" cy="165" rx="9" ry="7" fill="#8d5524"/>
+    <!-- Tablet -->
+    <g transform="translate(25, 140) rotate(-10)">
+      <rect x="0" y="0" width="35" height="48" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+      <rect x="3" y="3" width="29" height="38" rx="2" fill="#e2e8f0"/>
+      <line x1="7" y1="10" x2="28" y2="10" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="7" y1="16" x2="25" y2="16" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="7" y1="22" x2="27" y2="22" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="7" y1="28" x2="20" y2="28" stroke="#94a3b8" stroke-width="1"/>
+    </g>
+    <!-- Head -->
+    <ellipse cx="0" cy="55" rx="30" ry="35" fill="#8d5524"/>
+    <!-- Hair (short) -->
+    <path d="M-30,45 Q-32,15 -10,8 Q0,5 10,8 Q32,15 30,45" fill="#1a1a2e"/>
+    <!-- Face -->
+    <ellipse cx="-10" cy="50" rx="3.5" ry="4" fill="#2d1810"/>
+    <ellipse cx="10" cy="50" rx="3.5" ry="4" fill="#2d1810"/>
+    <path d="M-7,65 Q0,72 7,65" fill="none" stroke="#6b4226" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Stethoscope -->
+    <path d="M-5,90 Q5,105 10,90" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+    <path d="M10,90 L12,130" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+    <circle cx="12" cy="135" r="6" fill="#6b7280" stroke="#4b5563" stroke-width="1.5"/>
+    <!-- ID Badge -->
+    <rect x="-25" y="108" width="14" height="20" rx="2" fill="white" stroke="#d1d5db" stroke-width="0.5"/>
+    <rect x="-22" y="111" width="8" height="6" rx="1" fill="#86efac"/>
+    <!-- Legs -->
+    <rect x="-25" y="198" width="20" height="95" rx="7" fill="url(#tealScrub)"/>
+    <rect x="5" y="198" width="20" height="95" rx="7" fill="url(#tealScrub)"/>
+    <!-- Shoes -->
+    <ellipse cx="-15" cy="297" rx="15" ry="7" fill="#f8fafc"/>
+    <ellipse cx="15" cy="297" rx="15" ry="7" fill="#f8fafc"/>
+  </g>
+
+  <!-- === PERSON 3 (Center-Right) - Female, Blue scrubs === -->
+  <g transform="translate(460, 125)" filter="url(#softShadow)">
+    <!-- Body -->
+    <rect x="-30" y="80" width="60" height="100" rx="8" fill="url(#blueScrub)"/>
+    <!-- V-neck -->
+    <path d="M-10,80 L0,100 L10,80" fill="none" stroke="#1e40af" stroke-width="1.5"/>
+    <!-- Arms -->
+    <rect x="-42" y="85" width="16" height="68" rx="8" fill="url(#blueScrub)"/>
+    <rect x="26" y="85" width="16" height="68" rx="8" fill="url(#blueScrub)"/>
+    <!-- Hands -->
+    <ellipse cx="-34" cy="156" rx="8" ry="6" fill="#fcd0b4"/>
+    <ellipse cx="34" cy="156" rx="8" ry="6" fill="#fcd0b4"/>
+    <!-- Head -->
+    <ellipse cx="0" cy="48" rx="27" ry="32" fill="#fcd0b4"/>
+    <!-- Hair (blonde ponytail) -->
+    <path d="M-27,38 Q-28,10 -8,5 Q0,2 8,5 Q28,10 27,38" fill="#f0c75e"/>
+    <path d="M15,20 Q28,25 22,55 Q20,65 18,45 Q17,30 15,20" fill="#f0c75e"/>
+    <!-- Face -->
+    <ellipse cx="-9" cy="44" rx="3" ry="3.5" fill="#2d6da8"/>
+    <ellipse cx="9" cy="44" rx="3" ry="3.5" fill="#2d6da8"/>
+    <path d="M-5,57 Q0,62 5,57" fill="none" stroke="#d4956b" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Stethoscope -->
+    <path d="M-8,80 Q-18,100 -15,130" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+    <circle cx="-15" cy="135" r="6" fill="#6b7280" stroke="#4b5563" stroke-width="1.5"/>
+    <!-- ID Badge -->
+    <rect x="12" y="98" width="14" height="20" rx="2" fill="white" stroke="#d1d5db" stroke-width="0.5"/>
+    <rect x="15" y="101" width="8" height="6" rx="1" fill="#93c5fd"/>
+    <!-- Legs -->
+    <rect x="-22" y="178" width="18" height="88" rx="6" fill="url(#blueScrub)"/>
+    <rect x="4" y="178" width="18" height="88" rx="6" fill="url(#blueScrub)"/>
+    <!-- Shoes -->
+    <ellipse cx="-13" cy="270" rx="14" ry="6" fill="#f8fafc"/>
+    <ellipse cx="13" cy="270" rx="14" ry="6" fill="#f8fafc"/>
+  </g>
+
+  <!-- === PERSON 4 (Right) - Male, Navy scrubs with clipboard === -->
+  <g transform="translate(610, 120)" filter="url(#softShadow)">
+    <!-- Body -->
+    <rect x="-32" y="85" width="64" height="105" rx="8" fill="url(#navyScrub)"/>
+    <!-- V-neck -->
+    <path d="M-11,85 L0,105 L11,85" fill="none" stroke="#0f2942" stroke-width="1.5"/>
+    <!-- Arms -->
+    <rect x="-45" y="90" width="17" height="72" rx="8" fill="url(#navyScrub)"/>
+    <!-- Right arm with clipboard -->
+    <g transform="rotate(5, 34, 130)">
+      <rect x="28" y="90" width="17" height="72" rx="8" fill="url(#navyScrub)"/>
+    </g>
+    <!-- Hands -->
+    <ellipse cx="-37" cy="165" rx="9" ry="6" fill="#e8c39e"/>
+    <ellipse cx="40" cy="162" rx="9" ry="6" fill="#e8c39e"/>
+    <!-- Clipboard -->
+    <g transform="translate(28, 128) rotate(5)">
+      <rect x="0" y="0" width="32" height="45" rx="3" fill="#92400e" stroke="#78350f" stroke-width="1"/>
+      <rect x="3" y="8" width="26" height="34" rx="1" fill="white"/>
+      <rect x="8" y="0" width="16" height="6" rx="3" fill="#78350f"/>
+      <line x1="7" y1="15" x2="25" y2="15" stroke="#d1d5db" stroke-width="1"/>
+      <line x1="7" y1="21" x2="23" y2="21" stroke="#d1d5db" stroke-width="1"/>
+      <line x1="7" y1="27" x2="25" y2="27" stroke="#d1d5db" stroke-width="1"/>
+      <line x1="7" y1="33" x2="18" y2="33" stroke="#d1d5db" stroke-width="1"/>
+    </g>
+    <!-- Head -->
+    <ellipse cx="0" cy="52" rx="29" ry="34" fill="#e8c39e"/>
+    <!-- Hair (short, dark) -->
+    <path d="M-29,42 Q-30,12 -8,6 Q0,3 8,6 Q30,12 29,42" fill="#1a1a2e"/>
+    <!-- Face -->
+    <ellipse cx="-10" cy="48" rx="3" ry="3.5" fill="#2d1810"/>
+    <ellipse cx="10" cy="48" rx="3" ry="3.5" fill="#2d1810"/>
+    <path d="M-6,62 Q0,68 6,62" fill="none" stroke="#b8926a" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Stethoscope -->
+    <path d="M8,85 Q15,100 18,130" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+    <circle cx="18" cy="135" r="6" fill="#6b7280" stroke="#4b5563" stroke-width="1.5"/>
+    <!-- ID Badge -->
+    <rect x="-22" y="103" width="14" height="20" rx="2" fill="white" stroke="#d1d5db" stroke-width="0.5"/>
+    <rect x="-19" y="106" width="8" height="6" rx="1" fill="#fca5a5"/>
+    <!-- Legs -->
+    <rect x="-24" y="188" width="20" height="92" rx="7" fill="url(#navyScrub)"/>
+    <rect x="4" y="188" width="20" height="92" rx="7" fill="url(#navyScrub)"/>
+    <!-- Shoes -->
+    <ellipse cx="-14" cy="284" rx="15" ry="7" fill="#f8fafc"/>
+    <ellipse cx="14" cy="284" rx="15" ry="7" fill="#f8fafc"/>
+  </g>
+
+  <!-- Medical cross emblem (subtle) -->
+  <g transform="translate(400, 500)" opacity="0.12">
+    <rect x="-20" y="-6" width="40" height="12" rx="2" fill="#1e3a5f"/>
+    <rect x="-6" y="-20" width="12" height="40" rx="2" fill="#1e3a5f"/>
+  </g>
+
+  <!-- Subtle decorative circles -->
+  <circle cx="750" cy="50" r="30" fill="#3b82f6" opacity="0.08"/>
+  <circle cx="50" cy="500" r="25" fill="#0d9488" opacity="0.08"/>
+</svg>

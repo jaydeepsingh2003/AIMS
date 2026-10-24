@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#173D86"/>
+  <path d="M32 14L48 24V40L32 50L16 40V24L32 14Z" stroke="#E8E4F5" stroke-width="2.5" fill="#102A56"/>
+  <!-- Healthcare Cross Symbol inside -->
+  <path d="M32 24V40M24 32H40" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Gentle Accent dot -->
+  <circle cx="32" cy="14" r="3" fill="#2D8B83"/>
+</svg>
