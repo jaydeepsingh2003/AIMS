@@ -18,7 +18,15 @@ export function ProgramCard({ program }: ProgramCardProps) {
     >
       <div className="grid md:grid-cols-12 gap-0 items-stretch">
         {/* Left Column: Image / Visual Accent */}
-        <div className="md:col-span-5 relative bg-gradient-to-br from-brand-blue to-brand-navy p-8 text-white flex flex-col justify-between overflow-hidden">
+        <div className="md:col-span-5 relative p-8 text-white flex flex-col justify-between overflow-hidden min-h-[320px]">
+          {/* Background Photo */}
+          <img
+            src={program.image}
+            alt={program.title}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          {/* Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/90 to-brand-blue/80" />
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-36 h-36 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
 

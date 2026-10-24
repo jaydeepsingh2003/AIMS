@@ -14,7 +14,7 @@ export const programs: ProgramInfo[] = [
       'At AIMS Healthcare College, we prioritise your success by offering flexible learning schedules designed to fit your unique lifestyle. Whether you are balancing family responsibilities or professional commitments, our learning programs provide the structure you need to excel in your healthcare career without compromising your daily obligations.',
     overview:
       'The Personal Support Worker (PSW) program prepares students with the essential knowledge and practical skills required to provide compassionate, professional care in a variety of healthcare settings. Graduates are equipped to work in long-term care facilities, home care agencies, hospitals, and community support programs across Ontario.',
-    image: '/images/classroom-training.webp',
+    image: '/images/psw-program.jpg',
     deliveryFormat: 'In-Person & Distance Learning',
     schedules: [
       {

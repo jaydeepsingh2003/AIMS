@@ -136,9 +136,9 @@ export function PSWProgramPage() {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-slate-100">
                 <img
-                  src="/images/image_copy_3.png"
-                  alt="Personal Support Worker in healthcare training"
-                  className="w-full h-80 sm:h-96 object-cover"
+                  src="/images/psw-program.jpg"
+                  alt="Personal Support Worker assisting an elderly resident with a walker in an Ontario healthcare facility"
+                  className="w-full h-80 sm:h-96 object-cover object-center"
                 />
                 <div className="p-5 bg-brand-navy text-white">
                   <div className="flex items-center justify-between text-xs font-semibold text-brand-lavender mb-1">
