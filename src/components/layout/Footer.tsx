@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { GraduationCap, Phone, Mail, MapPin, Clock, ShieldCheck, HeartHandshake } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { footerNavigation } from '../../data/navigation';
 import { siteInfo } from '../../data/site';
 
@@ -11,9 +11,11 @@ export function Footer() {
           {/* Col 1: College Brand & Mission */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-brand-blue flex items-center justify-center text-white shadow-md">
-                <GraduationCap className="w-6 h-6" />
-              </div>
+              <img
+                src="/images/aims-logo.jpg"
+                alt="AIMS Healthcare College Logo"
+                className="h-16 w-16 object-contain rounded-full bg-white p-0.5 shadow-md"
+              />
               <div>
                 <span className="text-xl font-bold font-heading text-white tracking-tight block">
                   AIMS

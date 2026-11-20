@@ -9,7 +9,7 @@ export const siteInfo: SiteInfo = {
   tagline: 'A Way to Success',
   address: '309-800 Queenston Road, Stoney Creek, ON, Canada',
   phone: '(905) 525-5111',
-  email: 'info@aimshealthcarecollege.com',
+  email: 'raj.manvi@aimshealthcarecollege.com',
   hours: [
     { day: 'Monday', time: '09:00 am – 05:00 pm' },
     { day: 'Tuesday', time: '09:00 am – 05:00 pm' },

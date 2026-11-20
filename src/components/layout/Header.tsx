@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Phone, Mail, MapPin, Menu, X, ChevronDown, GraduationCap, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { mainNavigation, moreNavigation } from '../../data/navigation';
 import { siteInfo } from '../../data/site';
 import { PrimaryButton } from '../common/PrimaryButton';
@@ -70,9 +70,11 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* College Logo & Tagline */}
           <Link to="/" className="flex items-center gap-3 group focus-visible:outline-brand-blue">
-            <div className="w-12 h-12 rounded-xl bg-brand-blue flex items-center justify-center text-white shadow-md group-hover:bg-brand-navy transition-colors">
-              <GraduationCap className="w-7 h-7" />
-            </div>
+            <img
+              src="/images/aims-logo.jpg"
+              alt="AIMS Healthcare College Logo"
+              className="h-14 w-14 object-contain rounded-full shadow-md group-hover:opacity-90 transition-opacity"
+            />
             <div className="flex flex-col">
               <span className="text-xl font-bold font-heading text-brand-navy tracking-tight leading-tight group-hover:text-brand-blue transition-colors">
                 AIMS
