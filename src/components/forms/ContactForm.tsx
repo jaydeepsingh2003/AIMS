@@ -12,10 +12,10 @@ export function ContactForm() {
     message: '',
   });
 
-  // Honeypot field for anti-spam protection
   const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
@@ -28,43 +28,61 @@ export function ContactForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('idle');
     setErrors({});
+    setStatusMessage('');
 
-    // Drop automated bot submissions silently
+    // Silent bot drop
     if (honeypot) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setStatus('success');
-      }, 500);
+      setStatus('success');
+      setStatusMessage('Thank you! Your message has been sent.');
       return;
     }
 
+    // Client-side validation
     const result = contactFormSchema.safeParse(formData);
-
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
       result.error.issues.forEach((err) => {
         const key = err.path[0] as keyof ContactFormData;
-        if (key) {
-          fieldErrors[key] = err.message;
-        }
+        if (key) fieldErrors[key] = err.message;
       });
       setErrors(fieldErrors);
       setStatus('error');
+      setStatusMessage('Please correct the highlighted fields before submitting.');
       return;
     }
 
-    // Simulate short submission
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, honeypot }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error ?? 'Something went wrong.');
+      }
+
       setStatus('success');
+      setStatusMessage('Thank you! Your message has been sent. We will get back to you within 1–2 business days.');
       setFormData({ name: '', email: '', message: '' });
-    }, 600);
+    } catch (err) {
+      setStatus('error');
+      setStatusMessage(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again or call us at (905) 525-5111.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -78,16 +96,12 @@ export function ContactForm() {
 
       <FormStatus
         status={status}
-        title={status === 'success' ? 'Message Validated' : 'Please Fix Errors'}
-        message={
-          status === 'success'
-            ? 'Thank you! Your message passed frontend validation.'
-            : 'Please correct the highlighted fields before submitting.'
-        }
+        title={status === 'success' ? 'Message Sent!' : 'Please Fix Errors'}
+        message={statusMessage}
       />
 
       <form onSubmit={handleSubmit} noValidate className="space-y-4">
-        {/* Anti-spam honeypot (hidden from humans, bots fill it) */}
+        {/* Anti-spam honeypot */}
         <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
           <label htmlFor="website_url_contact">Do not fill this field</label>
           <input
@@ -101,12 +115,7 @@ export function ContactForm() {
           />
         </div>
 
-        <FormField
-          label="Your Full Name"
-          id="name"
-          required
-          error={errors.name}
-        >
+        <FormField label="Your Full Name" id="name" required error={errors.name}>
           <input
             id="name"
             name="name"
@@ -119,12 +128,7 @@ export function ContactForm() {
           />
         </FormField>
 
-        <FormField
-          label="Email Address"
-          id="email"
-          required
-          error={errors.email}
-        >
+        <FormField label="Email Address" id="email" required error={errors.email}>
           <input
             id="email"
             name="email"
@@ -157,14 +161,9 @@ export function ContactForm() {
         </FormField>
 
         <div className="pt-2">
-          <PrimaryButton
-            type="submit"
-            disabled={isSubmitting}
-            fullWidth
-            size="md"
-          >
+          <PrimaryButton type="submit" disabled={isSubmitting} fullWidth size="md">
             {isSubmitting ? (
-              <span>Validating...</span>
+              <span>Sending...</span>
             ) : (
               <>
                 <Send className="w-4 h-4 mr-2" />

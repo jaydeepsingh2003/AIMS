@@ -15,10 +15,10 @@ export function ApplicationForm() {
     message: '',
   });
 
-  // Honeypot field for bot spam prevention
   const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState<Partial<Record<keyof ApplicationFormData, string>>>({});
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
@@ -31,40 +31,52 @@ export function ApplicationForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('idle');
     setErrors({});
+    setStatusMessage('');
 
-    // Drop automated bot submissions silently
+    // Silent bot drop
     if (honeypot) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setStatus('success');
-      }, 500);
+      setStatus('success');
+      setStatusMessage('Your application enquiry has been received.');
       return;
     }
 
+    // Client-side validation
     const result = applicationFormSchema.safeParse(formData);
-
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ApplicationFormData, string>> = {};
       result.error.issues.forEach((err) => {
         const key = err.path[0] as keyof ApplicationFormData;
-        if (key) {
-          fieldErrors[key] = err.message;
-        }
+        if (key) fieldErrors[key] = err.message;
       });
       setErrors(fieldErrors);
       setStatus('error');
+      setStatusMessage('Please correct the highlighted inputs to proceed.');
       return;
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, honeypot }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error ?? 'Something went wrong.');
+      }
+
       setStatus('success');
+      setStatusMessage(
+        'Your application enquiry has been received! Our admissions coordinator will review your information and reach out within 1 business day.'
+      );
       setFormData({
         fullName: '',
         email: '',
@@ -73,7 +85,16 @@ export function ApplicationForm() {
         studyFormat: 'Day Classes (26 Weeks)',
         message: '',
       });
-    }, 600);
+    } catch (err) {
+      setStatus('error');
+      setStatusMessage(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again or call us at (905) 525-5111.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,16 +113,12 @@ export function ApplicationForm() {
 
       <FormStatus
         status={status}
-        title={status === 'success' ? 'Application Validated' : 'Please Review Fields'}
-        message={
-          status === 'success'
-            ? 'Success! Your enquiry passed all frontend validation tests.'
-            : 'Please correct the highlighted inputs to proceed.'
-        }
+        title={status === 'success' ? 'Application Received!' : 'Please Review Fields'}
+        message={statusMessage}
       />
 
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
-        {/* Anti-spam honeypot (hidden from humans, bots fill it) */}
+        {/* Anti-spam honeypot */}
         <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
           <label htmlFor="website_url">Do not fill this field</label>
           <input
@@ -116,12 +133,7 @@ export function ApplicationForm() {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          <FormField
-            label="Full Legal Name"
-            id="fullName"
-            required
-            error={errors.fullName}
-          >
+          <FormField label="Full Legal Name" id="fullName" required error={errors.fullName}>
             <input
               id="fullName"
               name="fullName"
@@ -134,12 +146,7 @@ export function ApplicationForm() {
             />
           </FormField>
 
-          <FormField
-            label="Email Address"
-            id="email"
-            required
-            error={errors.email}
-          >
+          <FormField label="Email Address" id="email" required error={errors.email}>
             <input
               id="email"
               name="email"
@@ -154,12 +161,7 @@ export function ApplicationForm() {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          <FormField
-            label="Phone Number"
-            id="phone"
-            hint="Optional for phone consultation"
-            error={errors.phone}
-          >
+          <FormField label="Phone Number" id="phone" hint="Optional for phone consultation" error={errors.phone}>
             <input
               id="phone"
               name="phone"
@@ -171,12 +173,7 @@ export function ApplicationForm() {
             />
           </FormField>
 
-          <FormField
-            label="Program of Choice"
-            id="program"
-            required
-            error={errors.program}
-          >
+          <FormField label="Program of Choice" id="program" required error={errors.program}>
             <select
               id="program"
               name="program"
@@ -191,12 +188,7 @@ export function ApplicationForm() {
           </FormField>
         </div>
 
-        <FormField
-          label="Preferred Study Format & Schedule"
-          id="studyFormat"
-          required
-          error={errors.studyFormat}
-        >
+        <FormField label="Preferred Study Format & Schedule" id="studyFormat" required error={errors.studyFormat}>
           <select
             id="studyFormat"
             name="studyFormat"
@@ -228,14 +220,9 @@ export function ApplicationForm() {
         </FormField>
 
         <div className="pt-3">
-          <PrimaryButton
-            type="submit"
-            disabled={isSubmitting}
-            fullWidth
-            size="lg"
-          >
+          <PrimaryButton type="submit" disabled={isSubmitting} fullWidth size="lg">
             {isSubmitting ? (
-              <span>Validating Application...</span>
+              <span>Sending Application...</span>
             ) : (
               <span className="flex items-center justify-center gap-2">
                 <CheckCircle2 className="w-5 h-5" />
